@@ -50,10 +50,17 @@
             MainMenuBtn = new Button();
             PasswordNameLabel = new Label();
             PasswordNameTextBox = new TextBox();
+            MyPasswordsPanel = new Panel();
+            DeletePasswordBtn = new Button();
+            BackMainMenuBtn = new Button();
+            MyPasswordsLabel = new Label();
+            PasswordGrid = new DataGridView();
             MainMenuPanel.SuspendLayout();
             QuitPanel.SuspendLayout();
             GeneratePasswordPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)PasswordLengthBtn).BeginInit();
+            MyPasswordsPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)PasswordGrid).BeginInit();
             SuspendLayout();
             // 
             // MainMenuPanel
@@ -277,11 +284,63 @@
             PasswordNameTextBox.TabIndex = 1;
             PasswordNameTextBox.TextChanged += PasswordNameTextBox_TextChanged;
             // 
+            // MyPasswordsPanel
+            // 
+            MyPasswordsPanel.Controls.Add(DeletePasswordBtn);
+            MyPasswordsPanel.Controls.Add(BackMainMenuBtn);
+            MyPasswordsPanel.Controls.Add(MyPasswordsLabel);
+            MyPasswordsPanel.Controls.Add(PasswordGrid);
+            MyPasswordsPanel.Location = new Point(0, 0);
+            MyPasswordsPanel.Name = "MyPasswordsPanel";
+            MyPasswordsPanel.Size = new Size(799, 453);
+            MyPasswordsPanel.TabIndex = 12;
+            MyPasswordsPanel.Visible = false;
+            // 
+            // DeletePasswordBtn
+            // 
+            DeletePasswordBtn.Location = new Point(648, 67);
+            DeletePasswordBtn.Name = "DeletePasswordBtn";
+            DeletePasswordBtn.Size = new Size(140, 44);
+            DeletePasswordBtn.TabIndex = 3;
+            DeletePasswordBtn.Text = "Delete";
+            DeletePasswordBtn.UseVisualStyleBackColor = true;
+            DeletePasswordBtn.Click += DeletePasswordBtn_Click;
+            // 
+            // BackMainMenuBtn
+            // 
+            BackMainMenuBtn.Location = new Point(82, 384);
+            BackMainMenuBtn.Name = "BackMainMenuBtn";
+            BackMainMenuBtn.Size = new Size(140, 44);
+            BackMainMenuBtn.TabIndex = 2;
+            BackMainMenuBtn.Text = "Main Menu";
+            BackMainMenuBtn.UseVisualStyleBackColor = true;
+            BackMainMenuBtn.Click += BackMainMenuBtn_Click;
+            // 
+            // MyPasswordsLabel
+            // 
+            MyPasswordsLabel.AutoSize = true;
+            MyPasswordsLabel.Font = new Font("Segoe UI Semibold", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            MyPasswordsLabel.Location = new Point(82, 9);
+            MyPasswordsLabel.Name = "MyPasswordsLabel";
+            MyPasswordsLabel.Size = new Size(243, 47);
+            MyPasswordsLabel.TabIndex = 1;
+            MyPasswordsLabel.Text = "My Passwords";
+            // 
+            // PasswordGrid
+            // 
+            PasswordGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            PasswordGrid.Location = new Point(82, 67);
+            PasswordGrid.Name = "PasswordGrid";
+            PasswordGrid.Size = new Size(541, 285);
+            PasswordGrid.TabIndex = 0;
+            PasswordGrid.CellContentClick += PasswordGrid_CellContentClick;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(MyPasswordsPanel);
             Controls.Add(GeneratePasswordPanel);
             Controls.Add(QuitPanel);
             Controls.Add(MainMenuPanel);
@@ -296,6 +355,9 @@
             GeneratePasswordPanel.ResumeLayout(false);
             GeneratePasswordPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)PasswordLengthBtn).EndInit();
+            MyPasswordsPanel.ResumeLayout(false);
+            MyPasswordsPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)PasswordGrid).EndInit();
             ResumeLayout(false);
         }
 
@@ -322,5 +384,10 @@
         private Button GenerateBtn;
         private Label PasswordLabel;
         private TextBox PasswordTextBox;
+        private Panel MyPasswordsPanel;
+        private Button BackMainMenuBtn;
+        private Label MyPasswordsLabel;
+        private DataGridView PasswordGrid;
+        private Button DeletePasswordBtn;
     }
 }

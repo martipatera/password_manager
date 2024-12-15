@@ -9,7 +9,8 @@ namespace Password_Manager
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            PasswordStorage.LoadFromFile(); // Naète hesla ze souboru
+            PasswordStorage.DisplayPasswords(PasswordGrid); // Zobrazí hesla v DataGridView
         }
 
         private void QuitBtn_Click(object sender, EventArgs e)
@@ -21,6 +22,7 @@ namespace Password_Manager
         private void MyPasswordsBtn_Click(object sender, EventArgs e)
         {
             PanelManager.HidePanel(MainMenuPanel);
+            PanelManager.ShowPanel(MyPasswordsPanel);
         }
 
         private void GeneratePasswordBtn_Click(object sender, EventArgs e)
@@ -58,7 +60,8 @@ namespace Password_Manager
 
         private void GenerateBtn_Click(object sender, EventArgs e)
         {
-            PasswordManagerClass.PasswordManager(CharsNumsRadBtn,CharsNumsSymRadBtn,PasswordLengthBtn,PasswordTextBox,PasswordNameTextBox);
+            PasswordManagerClass.PasswordManager(CharsNumsRadBtn, CharsNumsSymRadBtn, PasswordLengthBtn, PasswordTextBox, PasswordNameTextBox);
+            PasswordStorage.DisplayPasswords(PasswordGrid);
         }
 
         private void PasswordNameTextBox_TextChanged(object sender, EventArgs e)
@@ -83,7 +86,28 @@ namespace Password_Manager
 
         private void CharsNumsRadBtn_CheckedChanged(object sender, EventArgs e)
         {
-            
+
         }
+
+        private void BackMainMenuBtn_Click(object sender, EventArgs e)
+        {
+            PanelManager.HidePanel(MyPasswordsPanel);
+            PanelManager.ShowPanel(MainMenuPanel);
+        }
+
+        private void DeletePasswordBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PasswordGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Resetuje DataGridView a zobrazí hesla ze storage
+            PasswordGrid.DataSource = null; // Odstraní starý zdroj dat
+            PasswordGrid.DataSource = PasswordStorage.GetPasswords(); // Nastaví nový zdroj dat
+
+        }
+
+        
     }
 }

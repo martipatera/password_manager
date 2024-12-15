@@ -68,6 +68,8 @@ namespace Password_Manager
 
             string result = GeneratePassword(passwordType, (int)PasswordLengthBtn.Value, passwordName);
 
+            PasswordStorage.AddPassword(passwordName.ToUpper(), result);
+
             PasswordTextBox.Text = result;
         }
     }
