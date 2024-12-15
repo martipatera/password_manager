@@ -108,6 +108,10 @@ namespace Password_Manager
 
         }
 
-        
+        private void SavePasswordBtn_Click(object sender, EventArgs e)
+        {
+            PasswordManagerClass.SavePassword(PasswordNameTextBox, PasswordTextBox); // Uloží heslo a vyèistí TextBoxy
+            PasswordStorage.DisplayPasswords(PasswordGrid);
+        }
     }
 }

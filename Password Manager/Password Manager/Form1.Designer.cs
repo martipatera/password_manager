@@ -55,6 +55,7 @@
             BackMainMenuBtn = new Button();
             MyPasswordsLabel = new Label();
             PasswordGrid = new DataGridView();
+            SavePasswordBtn = new Button();
             MainMenuPanel.SuspendLayout();
             QuitPanel.SuspendLayout();
             GeneratePasswordPanel.SuspendLayout();
@@ -157,6 +158,7 @@
             // 
             // GeneratePasswordPanel
             // 
+            GeneratePasswordPanel.Controls.Add(SavePasswordBtn);
             GeneratePasswordPanel.Controls.Add(PasswordLabel);
             GeneratePasswordPanel.Controls.Add(PasswordTextBox);
             GeneratePasswordPanel.Controls.Add(GenerateBtn);
@@ -194,7 +196,7 @@
             // 
             // GenerateBtn
             // 
-            GenerateBtn.Location = new Point(444, 348);
+            GenerateBtn.Location = new Point(593, 132);
             GenerateBtn.Name = "GenerateBtn";
             GenerateBtn.Size = new Size(154, 39);
             GenerateBtn.TabIndex = 9;
@@ -204,7 +206,7 @@
             // 
             // PasswordLengthBtn
             // 
-            PasswordLengthBtn.Location = new Point(458, 130);
+            PasswordLengthBtn.Location = new Point(418, 146);
             PasswordLengthBtn.Maximum = new decimal(new int[] { 32, 0, 0, 0 });
             PasswordLengthBtn.Minimum = new decimal(new int[] { 8, 0, 0, 0 });
             PasswordLengthBtn.Name = "PasswordLengthBtn";
@@ -216,7 +218,7 @@
             // PasswordLengthLabel
             // 
             PasswordLengthLabel.AutoSize = true;
-            PasswordLengthLabel.Location = new Point(458, 106);
+            PasswordLengthLabel.Location = new Point(418, 122);
             PasswordLengthLabel.Name = "PasswordLengthLabel";
             PasswordLengthLabel.Size = new Size(140, 15);
             PasswordLengthLabel.TabIndex = 7;
@@ -226,7 +228,7 @@
             // PasswordTypeLabel
             // 
             PasswordTypeLabel.AutoSize = true;
-            PasswordTypeLabel.Location = new Point(185, 106);
+            PasswordTypeLabel.Location = new Point(185, 122);
             PasswordTypeLabel.Name = "PasswordTypeLabel";
             PasswordTypeLabel.Size = new Size(86, 15);
             PasswordTypeLabel.TabIndex = 6;
@@ -259,7 +261,7 @@
             // 
             // MainMenuBtn
             // 
-            MainMenuBtn.Location = new Point(185, 348);
+            MainMenuBtn.Location = new Point(117, 348);
             MainMenuBtn.Name = "MainMenuBtn";
             MainMenuBtn.Size = new Size(154, 39);
             MainMenuBtn.TabIndex = 3;
@@ -335,6 +337,16 @@
             PasswordGrid.TabIndex = 0;
             PasswordGrid.CellContentClick += PasswordGrid_CellContentClick;
             // 
+            // SavePasswordBtn
+            // 
+            SavePasswordBtn.Location = new Point(502, 348);
+            SavePasswordBtn.Name = "SavePasswordBtn";
+            SavePasswordBtn.Size = new Size(154, 39);
+            SavePasswordBtn.TabIndex = 13;
+            SavePasswordBtn.Text = "Save Password";
+            SavePasswordBtn.UseVisualStyleBackColor = true;
+            SavePasswordBtn.Click += SavePasswordBtn_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -389,5 +401,6 @@
         private Label MyPasswordsLabel;
         private DataGridView PasswordGrid;
         private Button DeletePasswordBtn;
+        private Button SavePasswordBtn;
     }
 }

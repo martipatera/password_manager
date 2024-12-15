@@ -8,7 +8,8 @@ namespace Password_Manager
     {
         const string charsNums = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         const string charsNumsSym = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_=+[]{}|;:,.<>?";
-
+        private static string _currentPasswordName = "";
+        private static string _currentPassword = "";
         public static bool PasswordNameCheck(TextBox PasswordNameTextBox)
         {
             if (string.IsNullOrWhiteSpace(PasswordNameTextBox.Text))
@@ -21,16 +22,21 @@ namespace Password_Manager
 
         public static string GeneratePassword(string passwordType, int passwordLength, string passwordName)
         {
-            string password = "";
+            _currentPasswordName = passwordName.Trim();
+            _currentPassword = "";
+
+            //string password = "";
             var random = new Random();
 
             for (int i = 0; i < passwordLength; i++)
             {
                 int index = random.Next(passwordType.Length);
-                password += passwordType[index];
+                _currentPassword += passwordType[index];
+                //password += passwordType[index];
             }
 
-            return $"{passwordName.ToUpper()}: {password}";
+            //return $"{passwordName.ToUpper()}: {password}";
+            return _currentPassword;
         }
 
         public static void PasswordManager(RadioButton CharsNumsRadBtn, RadioButton CharsNumsSymRadBtn, NumericUpDown PasswordLengthBtn, TextBox PasswordTextBox, TextBox PasswordNameTextBox)
@@ -68,9 +74,35 @@ namespace Password_Manager
 
             string result = GeneratePassword(passwordType, (int)PasswordLengthBtn.Value, passwordName);
 
-            PasswordStorage.AddPassword(passwordName.ToUpper(), result);
+            //PasswordStorage.AddPassword(passwordName.ToUpper(), result);
+
 
             PasswordTextBox.Text = result;
         }
+
+        public static void SavePassword(TextBox passwordNameTextBox, TextBox passwordTextBox)
+        {
+            if (string.IsNullOrWhiteSpace(_currentPasswordName) )
+            {
+                MessageBox.Show("No password name to save.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            else if (string.IsNullOrWhiteSpace(_currentPassword))
+            {
+                MessageBox.Show("No password to save.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            PasswordStorage.AddPassword(_currentPasswordName.ToUpper(), _currentPassword);
+
+            MessageBox.Show("Password saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            _currentPasswordName = "";
+            _currentPassword = "";
+            passwordNameTextBox.Clear();
+            passwordTextBox.Clear();
+        }
     }
+
 }
