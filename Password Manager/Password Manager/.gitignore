@@ -1,1 +1,15 @@
+# Visual Studio doèasné soubory
 .vs/
+*.suo
+
+# Buildovací složky
+bin/
+obj/
+
+# Soubory generované pøi kompilaci
+*.pdb
+*.exe
+*.dll
+*.cache
+*.vsidx
+*.json
