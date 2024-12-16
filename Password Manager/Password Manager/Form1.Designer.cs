@@ -39,6 +39,7 @@
             QuitLabel = new Label();
             YesBtn = new Button();
             GeneratePasswordPanel = new Panel();
+            SavePasswordBtn = new Button();
             PasswordLabel = new Label();
             PasswordTextBox = new TextBox();
             GenerateBtn = new Button();
@@ -55,7 +56,6 @@
             BackMainMenuBtn = new Button();
             MyPasswordsLabel = new Label();
             PasswordGrid = new DataGridView();
-            SavePasswordBtn = new Button();
             MainMenuPanel.SuspendLayout();
             QuitPanel.SuspendLayout();
             GeneratePasswordPanel.SuspendLayout();
@@ -175,6 +175,16 @@
             GeneratePasswordPanel.Size = new Size(799, 453);
             GeneratePasswordPanel.TabIndex = 3;
             GeneratePasswordPanel.Visible = false;
+            // 
+            // SavePasswordBtn
+            // 
+            SavePasswordBtn.Location = new Point(502, 348);
+            SavePasswordBtn.Name = "SavePasswordBtn";
+            SavePasswordBtn.Size = new Size(154, 39);
+            SavePasswordBtn.TabIndex = 13;
+            SavePasswordBtn.Text = "Save Password";
+            SavePasswordBtn.UseVisualStyleBackColor = true;
+            SavePasswordBtn.Click += SavePasswordBtn_Click;
             // 
             // PasswordLabel
             // 
@@ -330,22 +340,17 @@
             // 
             // PasswordGrid
             // 
+            PasswordGrid.AllowUserToAddRows = false;
+            PasswordGrid.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             PasswordGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             PasswordGrid.Location = new Point(82, 67);
+            PasswordGrid.MultiSelect = false;
             PasswordGrid.Name = "PasswordGrid";
+            PasswordGrid.ReadOnly = true;
+            PasswordGrid.SelectionMode = DataGridViewSelectionMode.CellSelect;
             PasswordGrid.Size = new Size(541, 285);
             PasswordGrid.TabIndex = 0;
             PasswordGrid.CellContentClick += PasswordGrid_CellContentClick;
-            // 
-            // SavePasswordBtn
-            // 
-            SavePasswordBtn.Location = new Point(502, 348);
-            SavePasswordBtn.Name = "SavePasswordBtn";
-            SavePasswordBtn.Size = new Size(154, 39);
-            SavePasswordBtn.TabIndex = 13;
-            SavePasswordBtn.Text = "Save Password";
-            SavePasswordBtn.UseVisualStyleBackColor = true;
-            SavePasswordBtn.Click += SavePasswordBtn_Click;
             // 
             // Form1
             // 

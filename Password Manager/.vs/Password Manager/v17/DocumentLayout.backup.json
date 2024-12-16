@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\pater\\source\\repos\\Password Manager\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A5A2CA2B-EDEB-447C-8B58-6414C7C2FB94}|Password Manager\\Password Manager.csproj|c:\\users\\pater\\source\\repos\\password manager\\password manager\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5A2CA2B-EDEB-447C-8B58-6414C7C2FB94}|Password Manager\\Password Manager.csproj|solutionrelative:password manager\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A5A2CA2B-EDEB-447C-8B58-6414C7C2FB94}|Password Manager\\Password Manager.csproj|c:\\users\\pater\\source\\repos\\password manager\\password manager\\passwordstorage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5A2CA2B-EDEB-447C-8B58-6414C7C2FB94}|Password Manager\\Password Manager.csproj|solutionrelative:password manager\\passwordstorage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A5A2CA2B-EDEB-447C-8B58-6414C7C2FB94}|Password Manager\\Password Manager.csproj|c:\\users\\pater\\source\\repos\\password manager\\password manager\\passwordmanagerclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5A2CA2B-EDEB-447C-8B58-6414C7C2FB94}|Password Manager\\Password Manager.csproj|solutionrelative:password manager\\passwordmanagerclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A5A2CA2B-EDEB-447C-8B58-6414C7C2FB94}|Password Manager\\Password Manager.csproj|c:\\users\\pater\\source\\repos\\password manager\\password manager\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5A2CA2B-EDEB-447C-8B58-6414C7C2FB94}|Password Manager\\Password Manager.csproj|solutionrelative:password manager\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A5A2CA2B-EDEB-447C-8B58-6414C7C2FB94}|Password Manager\\Password Manager.csproj|C:\\Users\\pater\\source\\repos\\Password Manager\\password manager\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
@@ -22,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
@@ -34,33 +34,32 @@
               "RelativeToolTip": "Password Manager\\Form1.cs [N\u00E1vrh]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-15T17:43:35.463Z",
-              "IsPinned": true,
-              "EditorCaption": " [N\u00E1vrh]"
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Form1.cs",
               "DocumentMoniker": "C:\\Users\\pater\\source\\repos\\Password Manager\\Password Manager\\Form1.cs",
               "RelativeDocumentMoniker": "Password Manager\\Form1.cs",
               "ToolTip": "C:\\Users\\pater\\source\\repos\\Password Manager\\Password Manager\\Form1.cs",
               "RelativeToolTip": "Password Manager\\Form1.cs",
-              "ViewState": "AgIAAFMAAAAAAAAAAAAqwGwAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAFIAAAAAAAAAAAApwGgAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-15T18:11:05.35Z",
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "PasswordManagerClass.cs",
-              "DocumentMoniker": "C:\\Users\\pater\\source\\repos\\Password Manager\\Password Manager\\PasswordManagerClass.cs",
-              "RelativeDocumentMoniker": "Password Manager\\PasswordManagerClass.cs",
-              "ToolTip": "C:\\Users\\pater\\source\\repos\\Password Manager\\Password Manager\\PasswordManagerClass.cs",
-              "RelativeToolTip": "Password Manager\\PasswordManagerClass.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAAowF8AAAAAAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "PasswordStorage.cs",
+              "DocumentMoniker": "C:\\Users\\pater\\source\\repos\\Password Manager\\Password Manager\\PasswordStorage.cs",
+              "RelativeDocumentMoniker": "Password Manager\\PasswordStorage.cs",
+              "ToolTip": "C:\\Users\\pater\\source\\repos\\Password Manager\\Password Manager\\PasswordStorage.cs",
+              "RelativeToolTip": "Password Manager\\PasswordStorage.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEcAAACDAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-15T17:45:36.222Z",
+              "WhenOpened": "2024-12-16T15:31:34.937Z",
               "EditorCaption": ""
             }
           ]

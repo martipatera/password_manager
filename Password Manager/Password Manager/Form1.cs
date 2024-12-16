@@ -2,6 +2,11 @@ namespace Password_Manager
 {
     public partial class Form1 : Form
     {
+
+        private string _selectedPasswordName = null; // Název aktuálnì vybraného hesla
+        private string _selectedPassword = null; // Aktualne vybrane heslo
+
+
         public Form1()
         {
             InitializeComponent();
@@ -97,14 +102,13 @@ namespace Password_Manager
 
         private void DeletePasswordBtn_Click(object sender, EventArgs e)
         {
+            PasswordStorage.PasswordCheck(ref _selectedPasswordName, ref _selectedPassword,PasswordGrid);
 
         }
 
         private void PasswordGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Resetuje DataGridView a zobrazí hesla ze storage
-            PasswordGrid.DataSource = null; // Odstraní starý zdroj dat
-            PasswordGrid.DataSource = PasswordStorage.GetPasswords(); // Nastaví nový zdroj dat
+            PasswordStorage.PasswordSelect(ref _selectedPasswordName, ref _selectedPassword, e, PasswordGrid);
 
         }
 
