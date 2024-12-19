@@ -9,59 +9,66 @@ namespace Password_Manager
 {
     public static class PasswordStorage
     {
-        private static string FilePath = "passwords.json"; // Cesta k JSON souboru
+        private static string FilePath = "passwords.json";
+
+        // list pro ukladani hesel
         private static List<PasswordEntry> _passwords = new List<PasswordEntry>();
 
-        // Načtení hesel ze souboru
         public static void LoadFromFile()
         {
             if (File.Exists(FilePath))
             {
                 string json = File.ReadAllText(FilePath);
-                _passwords = JsonSerializer.Deserialize<List<PasswordEntry>>(json) ?? new List<PasswordEntry>();
+
+                // deserializace na .NET objekt
+                _passwords = JsonSerializer.Deserialize<List<PasswordEntry>>(json) ?? new List<PasswordEntry>(); // ?? jestli je null udelej new LIST
             }
         }
 
-        // Uložení hesel do souboru
         public static void SaveToFile()
         {
-            string json = JsonSerializer.Serialize(_passwords, new JsonSerializerOptions { WriteIndented = true });
+            // serializace .NET objektu do JSON
+            string json = JsonSerializer.Serialize(_passwords);
             File.WriteAllText(FilePath, json);
         }
 
-        // Přidání hesla
         public static void AddPassword(string name, string password)
         {
             _passwords.Add(new PasswordEntry { Name = name, Password = password });
-            SaveToFile(); // Automaticky uloží seznam do JSON
+            SaveToFile();
         }
 
-        // Získání seznamu hesel
         public static List<PasswordEntry> GetPasswords()
         {
+            //vraci LIST ktery obsahuje vsechna hesla
             return _passwords;
         }
 
         public static void DisplayPasswords(DataGridView PasswordGrid)
         {
-            PasswordGrid.DataSource = null; // Vymaže aktuální data
-            PasswordGrid.DataSource = PasswordStorage.GetPasswords(); // Načte data z PasswordStorage
+            // odstrani predchozi data
+            PasswordGrid.DataSource = null;
+            // nastavim grid data na data z met. GetPasswords()
+            PasswordGrid.DataSource = PasswordStorage.GetPasswords();
         }
 
-        // Smazání hesla
-        public static void RemovePassword(string passwordName)
+        //kontrola hesla a remove
+        public static void CheckPassword(string selectedPassword)
         {
+            // null NEBO prazdny
             if (_passwords == null || !_passwords.Any())
             {
                 MessageBox.Show("No passwords to delete.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            var passwordToRemove = _passwords.FirstOrDefault(p => p.Name.Equals(passwordName, StringComparison.OrdinalIgnoreCase));
+            // FirstOrDefault hleda prvni objekt ktery, jehoz nazev NEBO heslo se shoduje p => p (promenna)
+            var passwordToRemove = _passwords.FirstOrDefault(p => p.Name.Equals(selectedPassword) || p.Password.Equals(selectedPassword, StringComparison.OrdinalIgnoreCase));
+
             if (passwordToRemove != null)
             {
-                _passwords.Remove(passwordToRemove);
-                SaveToFile(); // Uloží změny do JSON
+                _passwords.Remove(passwordToRemove); //removne prvni objekt co se bude shodovat
+                SaveToFile(); 
             }
             else
             {
@@ -69,22 +76,18 @@ namespace Password_Manager
             }
         }
 
-        public static void PasswordCheck(ref string _selectedPasswordName, ref string _selectedPassword, DataGridView PasswordGrid)
+        //odstraneni hesla tlacitko
+        public static void PasswordDelete( ref string _selectedPassword, DataGridView PasswordGrid)
         {
-            if (!string.IsNullOrEmpty(_selectedPasswordName)) // Zkontroluje, zda je heslo vybráno
+            if (!string.IsNullOrEmpty(_selectedPassword))
             {
-                // Odstraní heslo ze storage
-                PasswordStorage.RemovePassword(_selectedPasswordName);
+                PasswordStorage.CheckPassword(_selectedPassword); //poslu jmeno hesla a removnu ho
 
-                // Aktualizuje DataGridView
-                PasswordStorage.DisplayPasswords(PasswordGrid);
+                PasswordStorage.DisplayPasswords(PasswordGrid); // updatuju hesla
 
-                MessageBox.Show($"Password {_selectedPasswordName} deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"Password {_selectedPassword} deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-
-                // Vymaže výběr
-                _selectedPasswordName = null;
-
+                _selectedPassword = null; //resetuju vyber v hlavni tride pomoci ref
             }
             else
             {
@@ -92,27 +95,33 @@ namespace Password_Manager
             }
         }
 
-        public static void PasswordSelect(ref string _selectedPasswordName, ref string _selectedPassword, DataGridViewCellEventArgs e, DataGridView PasswordGrid)
+        //zjisteni na ktere heslo klikam
+
+        public static void PasswordSelect(ref string _selectedPassword, DataGridViewCellEventArgs e, DataGridView PasswordGrid)
         {
-            if (e.RowIndex >= 0 ) // Ověří, že klik byl na platný řádek
+            // kliknuti na radek
+            if (e.RowIndex >= 0)
             {
-                // Získá řádek na základě indexu
+                // ten kliknuty radek
                 DataGridViewRow row = PasswordGrid.Rows[e.RowIndex];
 
-                // Získá hodnotu sloupce "Name" (název hesla)
-                _selectedPasswordName = row.Cells["Name"].Value?.ToString();
-
+                // sloupec Name nebo Password
+                if (PasswordGrid.Columns[e.ColumnIndex].Name == "Name")
+                {
+                    // do promenne ulozime data z bunky Name
+                    _selectedPassword = row.Cells["Name"].Value?.ToString();  // ?  = pokud neni null
+                }
+                else if (PasswordGrid.Columns[e.ColumnIndex].Name == "Password")
+                {
+                    // do promenne ulozime data z bunky Password
+                    _selectedPassword = row.Cells["Password"].Value?.ToString(); // ?  = pokud neni null
+                }
+                
             }
-
-            
-
-            
-
-            
-
-
         }
 
+
     }
-    // Třída pro reprezentaci jednoho hesla
+
+
 }

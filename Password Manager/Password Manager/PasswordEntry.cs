@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Password_Manager
 {
+    // trida na jedno heslo, ktere ukladam to LISTU
     public class PasswordEntry
     {
-        public string Name { get; set; } // Název hesla (např. název účtu)
-        public string Password { get; set; } // Samotné heslo
+        public string Name { get; set; } 
+        public string Password { get; set; } 
     }
 }

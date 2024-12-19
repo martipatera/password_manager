@@ -350,7 +350,26 @@
             PasswordGrid.SelectionMode = DataGridViewSelectionMode.CellSelect;
             PasswordGrid.Size = new Size(541, 285);
             PasswordGrid.TabIndex = 0;
+            PasswordGrid.AutoGenerateColumns = false;
+
+            // Přidání sloupců
+            PasswordGrid.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Name", // Interní název sloupce
+                HeaderText = "Name", // Text v záhlaví sloupce
+                DataPropertyName = "Name" // Vazba na vlastnost "Name" v datovém zdroji
+            });
+
+            PasswordGrid.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Password", // Interní název sloupce
+                HeaderText = "Password", // Text v záhlaví sloupce
+                DataPropertyName = "Password" // Vazba na vlastnost "Password" v datovém zdroji
+            });
+
+            // Události
             PasswordGrid.CellContentClick += PasswordGrid_CellContentClick;
+
             // 
             // Form1
             // 

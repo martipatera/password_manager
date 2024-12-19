@@ -7,9 +7,11 @@ using System.Windows.Forms;
 
 namespace Password_Manager
 {
-    public static class PanelManager
+
+    //Forms delam pres panely a pracuju s nima pres skryvani a odkryvani
+    public static class PanelManager 
     {
-        public static void HidePanel(Panel panel)
+        public static void HidePanel(Panel panel) 
         {
             panel.Visible = false;
         }

@@ -8,8 +8,11 @@ namespace Password_Manager
     {
         const string charsNums = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         const string charsNumsSym = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_=+[]{}|;:,.<>?";
+
         private static string _currentPasswordName = "";
         private static string _currentPassword = "";
+
+        //metoda jestli neni jmeno hesla prazdne
         public static bool PasswordNameCheck(TextBox PasswordNameTextBox)
         {
             if (string.IsNullOrWhiteSpace(PasswordNameTextBox.Text))
@@ -20,43 +23,38 @@ namespace Password_Manager
             return true;
         }
 
+       //metoda na generovani
         public static string GeneratePassword(string passwordType, int passwordLength, string passwordName)
         {
             _currentPasswordName = passwordName.Trim();
             _currentPassword = "";
 
-            //string password = "";
             var random = new Random();
 
             for (int i = 0; i < passwordLength; i++)
             {
                 int index = random.Next(passwordType.Length);
                 _currentPassword += passwordType[index];
-                //password += passwordType[index];
             }
 
-            //return $"{passwordName.ToUpper()}: {password}";
             return _currentPassword;
         }
 
+        //sprava generovani
         public static void PasswordManager(RadioButton CharsNumsRadBtn, RadioButton CharsNumsSymRadBtn, NumericUpDown PasswordLengthBtn, TextBox PasswordTextBox, TextBox PasswordNameTextBox)
         {
-
-            //
-            // RadioBtn Check
-            //
-            if (!PasswordNameCheck(PasswordNameTextBox))
+            if (!PasswordNameCheck(PasswordNameTextBox)) //kontrola zadani hesla == if false
             {
                 return;
             }
 
             string passwordType = "";
 
-            if (CharsNumsRadBtn.Checked)
+            if (CharsNumsRadBtn.Checked) // typ hesla radio btn
             {
-                passwordType = charsNums;
+                passwordType = charsNums; 
             }
-            else if (CharsNumsSymRadBtn.Checked)
+            else if (CharsNumsSymRadBtn.Checked) // typ hesla radio btn
             {
                 passwordType = charsNumsSym;
             }
@@ -66,23 +64,17 @@ namespace Password_Manager
                 return;
             }
 
-            //
-            // Generace hesla
-            //
-
             string passwordName = PasswordNameTextBox.Text.Trim();
 
             string result = GeneratePassword(passwordType, (int)PasswordLengthBtn.Value, passwordName);
 
-            //PasswordStorage.AddPassword(passwordName.ToUpper(), result);
-
-
-            PasswordTextBox.Text = result;
+            PasswordTextBox.Text = result; // zobrazeni hesla do textboxu
         }
 
+        // ulozeni hesla
         public static void SavePassword(TextBox passwordNameTextBox, TextBox passwordTextBox)
         {
-            if (string.IsNullOrWhiteSpace(_currentPasswordName) )
+            if (string.IsNullOrWhiteSpace(_currentPasswordName))
             {
                 MessageBox.Show("No password name to save.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -94,14 +86,16 @@ namespace Password_Manager
                 return;
             }
 
+            // ulozeni hesla do LISTU
             PasswordStorage.AddPassword(_currentPasswordName.ToUpper(), _currentPassword);
 
             MessageBox.Show("Password saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+            // reset promennych v tride na docasny nazev a jmeno
             _currentPasswordName = "";
             _currentPassword = "";
-            passwordNameTextBox.Clear();
-            passwordTextBox.Clear();
+            passwordNameTextBox.Clear(); //vymazani textboxu
+            passwordTextBox.Clear(); //vymazani textboxu
         }
     }
 

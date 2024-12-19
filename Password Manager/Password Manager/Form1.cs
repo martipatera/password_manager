@@ -3,8 +3,7 @@ namespace Password_Manager
     public partial class Form1 : Form
     {
 
-        private string _selectedPasswordName = null; // Název aktuálnì vybraného hesla
-        private string _selectedPassword = null; // Aktualne vybrane heslo
+        private string _selectedPassword = null; //promena pro heslo na ktere kliknu a hodnotu si posilam pomoci ref
 
 
         public Form1()
@@ -14,8 +13,8 @@ namespace Password_Manager
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            PasswordStorage.LoadFromFile(); // Naète hesla ze souboru
-            PasswordStorage.DisplayPasswords(PasswordGrid); // Zobrazí hesla v DataGridView
+            PasswordStorage.LoadFromFile();
+            PasswordStorage.DisplayPasswords(PasswordGrid); 
         }
 
         private void QuitBtn_Click(object sender, EventArgs e)
@@ -102,19 +101,19 @@ namespace Password_Manager
 
         private void DeletePasswordBtn_Click(object sender, EventArgs e)
         {
-            PasswordStorage.PasswordCheck(ref _selectedPasswordName, ref _selectedPassword,PasswordGrid);
+            PasswordStorage.PasswordDelete( ref _selectedPassword,PasswordGrid);
 
         }
 
         private void PasswordGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            PasswordStorage.PasswordSelect(ref _selectedPasswordName, ref _selectedPassword, e, PasswordGrid);
+            PasswordStorage.PasswordSelect( ref _selectedPassword, e, PasswordGrid);
 
         }
 
         private void SavePasswordBtn_Click(object sender, EventArgs e)
         {
-            PasswordManagerClass.SavePassword(PasswordNameTextBox, PasswordTextBox); // Uloží heslo a vyèistí TextBoxy
+            PasswordManagerClass.SavePassword(PasswordNameTextBox, PasswordTextBox); 
             PasswordStorage.DisplayPasswords(PasswordGrid);
         }
     }
