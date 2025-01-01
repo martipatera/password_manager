@@ -14,16 +14,28 @@ namespace Password_Manager
         // list pro ukladani hesel
         private static List<PasswordEntry> _passwords = new List<PasswordEntry>();
 
+
         public static void LoadFromFile()
         {
             if (File.Exists(FilePath))
             {
                 string json = File.ReadAllText(FilePath);
-
-                // deserializace na .NET objekt
-                _passwords = JsonSerializer.Deserialize<List<PasswordEntry>>(json) ?? new List<PasswordEntry>(); // ?? jestli je null udelej new LIST
+                if (!string.IsNullOrWhiteSpace(json))
+                {
+                    // deserializace na .NET objekt
+                    _passwords = JsonSerializer.Deserialize<List<PasswordEntry>>(json) ?? new List<PasswordEntry>(); // ?? jestli je null udelej new LIST
+                }
+                else
+                {
+                    _passwords = new List<PasswordEntry>(); // Soubor je prázdný
+                }
+            }
+            else
+            {
+                _passwords = new List<PasswordEntry>(); // Soubor neexistuje
             }
         }
+
 
         public static void SaveToFile()
         {
@@ -46,6 +58,12 @@ namespace Password_Manager
 
         public static void DisplayPasswords(DataGridView PasswordGrid)
         {
+
+            if (_passwords == null || !_passwords.Any())
+            {
+                PasswordGrid.DataSource = null;
+                return;
+            }
             // odstrani predchozi data
             PasswordGrid.DataSource = null;
             // nastavim grid data na data z met. GetPasswords()
